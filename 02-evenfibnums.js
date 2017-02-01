@@ -43,37 +43,56 @@ const fibonacciIterativeSum = () => {
     a = b;
     b = c;
     if ( c % 2 === 0 ) {
-      tempTotal = total;
+      // tempTotal = total;
       total += c;
-      if (total > 4000000) {
-        break;
-      }
+      // if (total > 4000000) {
+      //   console.log('total',total);
+      //   break;
+      // }
     }
   }
-  return tempTotal;
+  return total;
 };
 
 console.log(fibonacciIterativeSum());
 
-const fibonacciRecusiveSum = () => {
-  const memo = {};
-  const recurseFib = (n) => {
-    let value = null;
+// const fibonacciRecusiveSum = () => {
+//   const fib = (n, memo) => {
+//     memo = memo || {};
+//     if (memo[n]) {
+//       return memo[n];
+//     }
+//     if (n === 0 || n === 1) {
+//       memo[n] = 1;
+//       return 1;
+//     }
+//     return memo[n] = fib(n-1) + fib(n-2);
+//   };
+//   let total = 0,
+//       n = 0;
+//   while (n < 4000000) {
+//     let fibNum = fib(n);
+//     if (fibNum % 2 === 0) {
+//       total += fibNum;
+//     }
+//     n++;
+//   }
+//   return total;
+// };
+//
+// console.log(fibonacciRecusiveSum());
 
-    if (memo[n]) {
-      value = memo[n];
-    } else {
-      if ( n === 0 || n === 1 ) {
-        value = 1;
-      } else {
-        value = recurseFib(n-1) + recurseFib(n-2);
-        memo[n] = value;
-      }
-    }
 
-    return value;
-  };
-  return recurseFib(10);
-};
-
-console.log(fibonacciRecusiveSum());
+//
+// const fibonacciRecusiveSum = (n , memo) => {
+//   memo = memo || {};
+//   if ( n < 0 ) {
+//     return null;
+//   }
+//   if ( n <= 1 ) {
+//     return 1;
+//   }
+//   return memo[n] = fibonacciRecusiveSum(n-1, memo) + fibonacciRecusiveSum(n-2, memo);
+// };
+//
+// console.log(fibonacciRecusiveSum(3));
