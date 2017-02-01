@@ -8,7 +8,6 @@
 
 // memoizing reduces the time complexity to O(n)
 // basic recursive Fibonacci solution for n items
-
 // const fibonacciSequence = (n, memo) => {
 //   memo = memo || {};
 //   if ( n < 0 ) {
@@ -20,7 +19,7 @@
 //   return memo[n] = fibonacciSequence(n-1, memo) + fibonacciSequence(n-2, memo);
 // };
 
-// iterative solution
+// iterative solution for a fixed n
 // const fibonacciIterative = (n) => {
 //   let total = [];
 //   let a = 0,
@@ -34,20 +33,47 @@
 //   return total;
 // };
 
-const fibonacciIterativeSum = (n) => {
-  let total = 0;
-  let a = 0,
-      b = 1;
-  for (var i = 1; i <= n; i++) {
+const fibonacciIterativeSum = () => {
+  let total = 0,
+    tempTotal = 0,
+    a = 0,
+    b = 1;
+  while (total < 4000000) {
     let c = a + b;
     a = b;
     b = c;
     if ( c % 2 === 0 ) {
-      console.log(c)
+      tempTotal = total;
       total += c;
+      if (total > 4000000) {
+        break;
+      }
     }
   }
-  return total;
+  return tempTotal;
 };
 
-console.log(fibonacciIterativeSum(100));
+console.log(fibonacciIterativeSum());
+
+const fibonacciRecusiveSum = () => {
+  const memo = {};
+  const recurseFib = (n) => {
+    let value = null;
+
+    if (memo[n]) {
+      value = memo[n];
+    } else {
+      if ( n === 0 || n === 1 ) {
+        value = 1;
+      } else {
+        value = recurseFib(n-1) + recurseFib(n-2);
+        memo[n] = value;
+      }
+    }
+
+    return value;
+  };
+  return recurseFib(10);
+};
+
+console.log(fibonacciRecusiveSum());
